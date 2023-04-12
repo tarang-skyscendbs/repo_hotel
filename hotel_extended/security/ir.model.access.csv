@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+hotel.access_hotel_admin_rooms_access,hotel.admin.rooms.access,hotel.model_hotel_rooms,hotel.group_hotel_admin,1,1,1,1
+hotel.access_hotel_staff_rooms_access,hotel.staff.rooms.access,hotel.model_hotel_rooms,hotel.group_hotel_staff,1,0,0,0
+hotel.access_hotel_customer_rooms_access,hotel.customer.rooms.access,hotel.model_hotel_rooms,hotel.group_hotel_customer,1,0,0,0
+access_hotel_admin_bike_template_access,hotel.admin.bike.template.access,model_bike_template,hotel.group_hotel_admin,1,1,1,1
+access_hotel_admin_bike_variant_access,hotel.admin.bike.variant.access,model_bike_variant,hotel.group_hotel_admin,1,1,1,1
+access_hotel_admin_hotel_city_access,hotel.admin.hotel.city.access,model_hotel_city,hotel.group_hotel_admin,1,1,1,1

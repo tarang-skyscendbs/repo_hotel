@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_rooms_form_inherit" model="ir.ui.view">
+        <field name="name">view.rooms.form.inherit</field>
+        <field name="model">hotel.rooms</field>
+        <field name="inherit_id" ref="hotel.view_rooms_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/sheet/group[1]/field[@name='img']" position="after">
+                <field name="blood_group"/>
+                <field name="address"/>
+                <!--                <field name="city_ids"/>-->
+                <!--                <field name="city"/>-->
+            </xpath>
+            <xpath expr="/form/sheet/group[1]/field[@name='age']" position="before">
+                <field name="marital_stautus" groups="hotel.group_hotel_admin ,hotel.group_hotel_staff "/>
+            </xpath>
+            <xpath expr="/form/sheet/group[1]/field[@name='room_code']" position="replace">
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page[@name='review']" position="inside">
+                <group>
+<!--                    <field name="amenity_ids" groups="hotel.group_hotel_admin"/>-->
+                </group>
+            </xpath>
+
+            <xpath expr="//field[@name='rating']" position="attributes">
+                <attribute name="widget">radio</attribute>
+                <attribute name="string">how was your stay?</attribute>
+            </xpath>
+            <xpath expr="/form/sheet" position="after">
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_rooms_tree_inherit" model="ir.ui.view">
+        <field name="name">view.rooms.tree.inherit</field>
+        <field name="model">hotel.rooms</field>
+        <field name="inherit_id" ref="hotel.view_rooms_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="/tree/field[@name='state']" position="after">
+                <field name="user_id" widget="many2one_avatar_user"/>
+                <field name="activity_ids" widget="list_activity"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_rooms_kanban_inherit" model="ir.ui.view">
+        <field name="name">view.rooms.kanban.inherit</field>
+        <field name="model">hotel.rooms</field>
+        <field name="inherit_id" ref="hotel.view_record_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="/kanban/templates/t[@t-name='kanban-box']/div[1]" position="inside">
+                <div class="oe_kanban_footer">
+                    <div class="o_kanban_record_bottom">
+                        <div class="oe_kanban_bottom_left">
+                            <!--                            <field name="priority" widget="priority"/>-->
+                            <field name="activity_ids" widget="kanban_activity"/>
+                        </div>
+
+                        <div class="oe_kanban_bottom_right">
+                            <field name="user_id" widget="many2one_avatar_user"/>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_rooms_activity" model="ir.ui.view">
+        <field name="name">view.rooms.activity</field>
+        <field name="model">hotel.rooms</field>
+        <field name="arch" type="xml">
+            <activity string="Customers">
+                <field name="id"/>
+                <templates>
+                    <div t-name="activity-box">
+                        <img t-att-src="activity_image('hotel.rooms', 'img', record.id.raw_value)" role="img"
+                             t-att-title="record.id.value" t-att-alt="record.id.value"/>
+                        <div>
+                            <field name="name" display="full"/>
+                            <field name="age"/>
+                        </div>
+                    </div>
+                </templates>
+            </activity>
+        </field>
+    </record>
+
+    <record id="hotel.rooms_action" model="ir.actions.act_window">
+        <field name="view_mode">kanban,tree,form,calendar,graph,pivot,activity</field>
+<!--        <field name="context">{'search_default_grp_by_gender':0}</field>-->
+        <!--            <field name="domain">[('room_type','in',['single','delux','double'])]</field>-->
+    </record>
+</odoo>

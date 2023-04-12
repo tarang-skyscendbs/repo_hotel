@@ -1,0 +1,6 @@
+<odoo>
+    <record id ="hotel.group_hotel_admin" model="res.groups">
+        <field name="name">Hotel Receptionist</field>
+    </record>
+
+</odoo>

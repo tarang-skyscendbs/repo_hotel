@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Form view of bike Template -->
+    <record id="view_bike_template_form" model="ir.ui.view">
+        <field name="name">view.bike.template.form</field>
+        <field name="model">bike.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <label for="model_name"/>
+                    <h1><field name="model_name" required="1"/></h1>
+                    <group name="main_grp" colspan="4" col="4">
+                        <field name="engine"/>
+                        <field name="bike_type"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view of Bike Templates -->
+    <record id="view_bike_template_tree" model="ir.ui.view">
+        <field name="name">view.bike.tree</field>
+        <field name="model">bike.template</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="model_name"/>
+                <field name="engine"/>
+                <field name="bike_type"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action of Bike Templates -->
+    <record id="action_bike_templates" model="ir.actions.act_window">
+        <field name="name">Bike Templates</field>
+        <field name="res_model">bike.template</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu of Bike -->
+    <menuitem id="menu_bike_main" name="Bikes" parent="hotel.menu_hotel_app"/>
+
+    <!-- Menu of Bike Templates -->
+    <menuitem id="menu_bike_template" action="action_bike_templates" parent="menu_bike_main"/>
+
+    <!-- Form view of bikes -->
+    <record id="view_bike_form" model="ir.ui.view">
+        <field name="name">view.bike.form</field>
+        <field name="model">bike.variant</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <label for="name"/>
+                    <!-- You can use the field of the parent directly in child's views -->
+                    <!-- So here model_name, engine and car_type are template fields which are used on cars -->
+                    <h1><field name="name" required="1"/></h1>
+                    <h1><field name="template_id"/></h1>
+                    <group name="main_grp" colspan="4" col="4">
+                        <field name="engine"/>
+                        <field name="bike_type"/>
+                        <field name="fuel_type"/>
+                        <field name="color" widget="color_picker"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view of Bikes -->
+    <record id="view_bike_tree" model="ir.ui.view">
+        <field name="name">view.bike.tree</field>
+        <field name="model">bike.variant</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="model_name"/>
+                <field name="engine"/>
+                <field name="bike_type"/>
+                <field name="fuel_type"/>
+                <field name="color" widget="color_picker"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action of Bikes -->
+    <record id="action_bike" model="ir.actions.act_window">
+        <field name="name">Bikes</field>
+        <field name="res_model">bike.variant</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu of Bikes -->
+    <menuitem id="menu_bike" action="action_bike" parent="menu_bike_main"/>
+
+      <!-- Tree view of Bikes2 -->
+    <record id="view_bike2_tree" model="ir.ui.view">
+        <field name="name">view.bike2.tree</field>
+        <field name="model">bike.variant2</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="model_name"/>
+                <field name="engine"/>
+                <field name="bike_type"/>
+                <field name="fuel_type"/>
+                <field name="color" widget="color_picker"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action of Bike2 -->
+    <record id="action_bike2" model="ir.actions.act_window">
+        <field name="name">Bike2</field>
+        <field name="res_model">bike.variant2</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu of Bikes -->
+    <menuitem id="menu_bikes2" action="action_bike2" parent="menu_bike_main"/>
+</odoo>
+
+
+
+

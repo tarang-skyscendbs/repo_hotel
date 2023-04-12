@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_city_form_inherit" model="ir.ui.view">
+        <field name="name">view.city.form.inherit</field>
+        <field name="model">hotel.city</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="order"/>
+                        <field name="cities"/>
+                        <field name="service"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_city_tree_inherit" model="ir.ui.view">
+        <field name="name">view.city.tree.inherit</field>
+        <field name="model">hotel.city</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="order"/>
+                <field name="service"/>
+                <field name="cities"/>
+            </tree>
+        </field>
+    </record>
+    <record id = 'action_hotel_city' model="ir.actions.act_window">
+        <field name="name">Restaurant Service</field>
+        <field name="res_model">hotel.city</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_hotel_city" name="City" action='action_hotel_city' parent="hotel.menu_hotel_app"/>
+</odoo>
+

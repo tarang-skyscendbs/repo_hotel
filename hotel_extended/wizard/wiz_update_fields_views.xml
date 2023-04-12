@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_update_field_wiz_form_inherit_id_proof" model="ir.ui.view">
+        <field name="name">view.update.field.wiz.form.inherit.id.proof</field>
+        <field name="model">wiz.update.field</field>
+        <field name="inherit_id" ref="hotel.view_update_field_wiz_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='service']" position="after">
+                <field name="id_proof"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,20 @@
+{'name': 'hotel management extended',
+ 'description': 'This module will be use to manage hotel features',
+ 'summary': 'for room management',
+ 'version': '1.0',
+ 'author': "Skyscend Business Solutions Pvt. Ltd.",
+ 'category': 'Hotel',
+ 'depends': ['hotel', 'mail'],
+ 'website': 'https://www.goibibo.com',
+ 'data': ['security/rooms_security.xml',
+          'security/ir.model.access.csv',
+          'views/rooms_views.xml',
+          'views/bike_views.xml',
+          'wizard/wiz_update_fields_views.xml',
+          'views/city_views.xml'],
+          # 'views/service_views.xml'],
+ 'installable': True,
+ 'auto_install': False,
+ 'application': True
+
+ }

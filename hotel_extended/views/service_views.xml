@@ -1,0 +1,36 @@
+<!--<?xml version="1.0" encoding="utf-8" ?>-->
+<!--<odoo>-->
+<!--    <record id="view_service_form_inherit" model="ir.ui.view">-->
+<!--        <field name="name">view.city.form.inherit</field>-->
+<!--        <field name="model">hotel.service</field>-->
+<!--        <field name="inherit_id" ref="hotel.view_service_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="/form/sheet/group[1]/field[@name='rent']" position="after">-->
+<!--&lt;!&ndash;                <field name="aminities"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                <field name="amenity_type_id"/>&ndash;&gt;-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--        <record id="view_service_tree_inherit" model="ir.ui.view">-->
+<!--            <field name="name">view.service.tree.inherit</field>-->
+<!--            <field name="model">hotel.service</field>-->
+<!--            <field name="inherit_id" ref="hotel.view_service_tree"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--            <tree>-->
+<!--                <field name="amenity_type_id"/>-->
+<!--            </tree>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--&lt;!&ndash;    <record id="action_city" model="ir.actions.act_window">&ndash;&gt;-->
+<!--&lt;!&ndash;        <field name="name">City</field>&ndash;&gt;-->
+<!--&lt;!&ndash;        <field name="res_model">city.name</field>&ndash;&gt;-->
+<!--&lt;!&ndash;        <field name="view_mode">tree,form</field>&ndash;&gt;-->
+<!--&lt;!&ndash;    </record>&ndash;&gt;-->
+<!--&lt;!&ndash;    <menuitem id="menu_city_main" name="city" parent="hotel.menu_hotel_app"/>&ndash;&gt;-->
+<!--&lt;!&ndash;    <menuitem id="menu_cities" name="Cities" action="action_city" parent="menu_city_main"/>&ndash;&gt;-->
+<!--</odoo>-->
+
+
+
