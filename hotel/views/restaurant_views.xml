@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_restaurant_form" model="ir.ui.view">
+        <field name="name">view.restaurant.form</field>
+        <field name="model">hotel.restaurant</field>
+        <field name="arch" type="xml">
+
+            <form>
+                <header>
+                    <button name="%(action_service)d"  string="Create record" type="action"/>
+                </header>
+                <sheet>
+                    <group>
+<!--                        <field name="room_id"/>-->
+                        <field name="order"/>
+                        <field name="order_code"/>
+                        <field name="color" widget="color_picker"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_restaurant_tree" model="ir.ui.view">
+        <field name="name">view.restaurant.tree</field>
+        <field name="model">hotel.restaurant</field>
+        <field name="arch" type="xml">
+
+            <tree>
+<!--                <field name="room_id"/>-->
+                <field name="order"/>
+                <field name="order_code"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_restaurant_search" model="ir.ui.view">
+        <field name="name">view.restaurant.search</field>
+        <field name="model">hotel.restaurant</field>
+        <field name="arch" type="xml">
+
+            <search>
+                <field name="order"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_restaurant" model="ir.actions.act_window">
+        <field name="name">Menu</field>
+        <field name="res_model">hotel.restaurant</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_restaurant" name="restaurant" parent="menu_hotel_app"/>
+
+    <menuitem id="menu_menu" name="menu" parent="menu_restaurant"/>
+
+    <menuitem id="menu_menu" action="action_restaurant" parent="menu_restaurant"/>
+
+
+</odoo>
+
+
+
+
+

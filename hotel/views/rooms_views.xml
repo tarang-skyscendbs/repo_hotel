@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="action_update_mo_wiz_btn" model="ir.actions.act_window">
+        <field name="name">Update Mobile</field>
+        <field name="res_model">wiz.update.mo</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="view_rooms_form" model="ir.ui.view">
+        <field name="name">view.rooms.form</field>
+        <field name="model">hotel.rooms</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="%(action_update_mo_wiz)d" string="Update Mobile" type="action" context="{'default_room_id':active_id}"/>
+                    <button name="%(action_update_age_wiz_form_no_room)d" string="Update Mobile w.o name" type="action"/>
+                    <button name="%(action_update_m2m_wiz)d" string="Update M2m" type="action" context="{'default_serve_ids':serve_ids }" />
+<!--                    <button name="%(action_update_m2m_wiz)d" string="open" type="action" />-->
+<!--                    <button name="%(action_update_m2o_wiz)d" string="Update M2o" type="action" context="{'default_restaurant_id':restaurant_id}"/>-->
+                    <button name="customer_checkin" string="Check-In" type="object" states="stay-in"/>
+                    <button name="customer_stayin" string="stay-In" type="object" states="check-out"/>
+                    <button name="customer_checkout" string="Check-out" type="object" states="check-in"/>
+                    <field name="state" widget="statusbar" statusbar_visible='check-in,stay-in,check-out'
+                           clikable='True'/>
+                    <button name="print_hello" string="Hello" type="object"/>
+                    <button name="create_new_record" string="create" type="object"/>
+                    <button name="update_exixting_record" string="write" type="object"/>
+                    <button name="read_record" string="Read" type="object"/>
+                    <button name="search_record" string="Search Record" type="object"/>
+                    <button name="search_count_record" string="Count Record" type="object"/>
+                    <button name="search_read_record" string="search-read" type="object"/>
+                    <button name="update_user" string="Update-User" type="object"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(action_service)d"
+                                type="action"
+                                class="oe_stat_button"
+                                icon="fa-users"
+                                string="Services">
+                            <field name="no_of_services" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(action_restaurant)d"
+                                type="action"
+                                class="oe_stat_button"
+                                icon="fa-users"
+                                string="Food items">
+                            <field name="no_of_food_items" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Paid" bg_color="bg-danger"
+                            attrs="{'invisible': [('payment', '=', False)]}"/>
+                    <label for="name"/>
+                    <field name="name" placeholder="Enter name for e.g.Tarang" style="color:blue"/>
+                    <group>
+                        <field name="email" widget="email"
+                               placeholder="(Your booking voucher will be sent to this email address)"/>
+<!--                        <field name="partner_id"/>-->
+                        <field name="img" widget="image" class="oe_avatar"/>
+                        <field name="birth_date"/>
+                        <field name="age" help="this field is mandatory" placeholder="Enter age"
+                               groups="hotel.group_hotel_admin"/>
+                        <!--                            <field name="rent" />-->
+                        <!--                            <field name="service_charge"/>-->
+                        <!--                            <field name="food_charge"/>-->
+                        <!--                            attrs="{'readonly':[('name','!=',False)],'required':[('name','=',False)]}"-->
+                        <field name="mo_no" class="color_red"/>
+                        <field name="checkin_date" help="select entry_date" placeholder="Check-in"/>
+                        <field name="checkout_date" help="select exit date" placeholder="Check-out"/>
+                        <field name="total_hours" widget="float_time"/>
+                        <field name="state"/>
+                        <field name="gender" help="select gender"/>
+                        <field name="id_proof"/>
+                        <field name="room_code"/>
+                        <field name="room_type" help=" select type of room" placeholder="Enter room type"
+                               widget="radio"/>
+                        <field name="payment"/>
+                        <field name="pwd" password="*" invisible="1"/>
+                        <field name="rating" widget="priority"/>
+<!--                        <field name="service_id"/>-->
+                        <field name="ref"/>
+                        <field name="serve_ids" widget="many2many_tags"/>
+<!--                        <field name="restaurant_id"/>-->
+                        <field name="parent_id" domain="[('id', '!=', active_id)]"/>
+                        <!--                        <field name="update_user_id"/>-->
+                        <!-- domain="[('order', 'like', 'it')]-->
+
+                    </group>
+                    <notebook>
+                        <page name="pg_notes" string="Services">
+                            <field name="service_id"/>
+<!--                            <field name="menu_id"/>-->
+                        </page>
+<!--                        <page name="pg_notes" string="your order for food">-->
+<!--                            <field name="serve_ids" widget="many2many_tags"/>-->
+<!--                        </page>-->
+                        <page name="attached file" string="file">
+                            <field name="document" filename="file_name"/>
+                            <field name="file_name" invisible="1"/>
+                        </page>
+                        <page name="attached image" string="image">
+                            <field name="img" widget="image" class="oe_avatar"/>
+                        </page>
+                        <page name="Total charge" string="All over Charge">
+                            <group>
+                                <field name="total_charges"/>
+                                <field name="total_charges1"/>
+                                <field name="per" widget="percentpie"/>
+                            </group>
+                        </page>
+                        <page name="pg_child" string="childs">
+                            <field name="child_ids" readonly="1"/>
+                        </page>
+                        <page name="review" string="review">
+                            <field name="feedback" attrs="{'invisible': [('payment', '=', False)]}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <h2 style="color:tomato;" align="center">Thank you Visit Again</h2>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_new_rooms_form" model="ir.ui.view">
+        <field name="name">view.new.rooms.form</field>
+        <field name="model">hotel.rooms</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="customer_checkin" string="Check-In" type="object" states="stay-in"/>
+                    <button name="customer_stayin" string="stay-In" type="object" states="check-out"/>
+                    <button name="customer_checkout" string="Check-out" type="object" states="check-in"/>
+                    <field name="state" widget="statusbar" statusbar_visible='check-in,stay-in,check-out'
+                           clikable='True'/>
+                    <button name="print_hello" string="Hello" type="object"/>
+                    <button name="create_new_record" string="create" type="object"/>
+                    <button name="update_exixting_record" string="write" type="object"/>
+                    <button name="read_record" string="Read" type="object"/>
+                    <button name="search_record" string="Search Record" type="object"/>
+                    <button name="search_count_record" string="Count Record" type="object"/>
+                    <button name="search_read_record" string="search-read" type="object"/>
+                    <button name="update_user" string="Update-User" type="object"/>
+
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(action_service)d"
+                                type="action"
+                                class="oe_stat_button"
+                                icon="fa-users"
+                                string="Services">
+                            <field name="no_of_services" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(action_restaurant)d"
+                                type="action"
+                                class="oe_stat_button"
+                                icon="fa-users"
+                                string="Food items">
+                            <field name="no_of_food_items" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Paid" bg_color="bg-danger"
+                            attrs="{'invisible': [('payment', '=', False)]}"/>
+                    <label for="name"/>
+                    <field name="name" placeholder="Enter name for e.g.Tarang"/>
+                    <group>
+                        <field name="img" widget="image" class="oe_avatar"/>
+                        <field name="birth_date"/>
+                        <field name="age" help="this field is mandatory" placeholder="Enter age"
+                               groups="hotel.group_hotel_admin"/>
+                        <!--                            <field name="rent" />-->
+                        <!--                            <field name="service_charge"/>-->
+                        <!--                            <field name="food_charge"/>-->
+                        <!--                            attrs="{'readonly':[('name','!=',False)],'required':[('name','=',False)]}"-->
+                        <field name="mo_no"/>
+                        <field name="color" widget="color_picker"/>
+                        <field name="checkin_date" help="select entry_date" placeholder="Check-in"/>
+                        <field name="checkout_date" help="select exit date" placeholder="Check-out"/>
+                        <field name="total_hours" widget="float_time"/>
+                        <field name="state"/>
+                        <field name="gender" help="select gender"/>
+                        <field name="id_proof"/>
+                        <field name="room_code"/>
+                        <field name="room_type" help=" select type of room" placeholder="Enter room type"
+                               widget="radio"/>
+                        <field name="payment"/>
+                        <field name="pwd" password="*" invisible="1"/>
+                        <field name="rating" widget="priority"/>
+                        <field name="ref"/>
+                        <field name="email" widget="email"
+                               placeholder="(Your booking voucher will be sent to this email address)"/>
+                        <field name="restaurant_id" options="{'color_field':'color'}">
+                            <tree>
+                                <field name="order"/>
+                                <field name="order_code"/>
+                            </tree>
+                            <form>
+                                <group>
+                                    <field name="order"/>
+                                    <field name="color"/>
+                                </group>
+                            </form>
+                        </field>
+                        <field name="parent_id" domain="[('id', '!=', (parent_id))]"/>
+                        <!--                        <field name="update_user_id"/>-->
+                        <!-- domain="[('order', 'like', 'it')]-->
+
+                    </group>
+                    <notebook>
+                        <page name="pg_notes" string="Services">
+                            <field name="service_id" options="{'color_field':'color'}">
+                                <tree>
+                                    <field name="service"/>
+                                    <field name="service_charge"/>
+                                    <field name="color" widget="color_picker"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="food_charge"/>
+                                        <field name="rent"/>
+                                        <field name="color" widget="color_picker"/>
+                                    </group>
+                                </form>
+                            </field>
+<!--                            <field name="menu_id"/>-->
+                        </page>
+                        <page name="pg_notes" string="your order for food">
+                            <field name="serve_ids" widget="many2many_tags"/>
+                            <!--                                 domain="[('order','ilike','%ts')]"-->
+                        </page>
+                        <page name="attached file" string="file">
+                            <field name="document" filename="file_name"/>
+                            <field name="file_name" invisible="1"/>
+                        </page>
+                        <page name="attached image" string="image">
+                            <field name="img" widget="image" class="oe_avatar"/>
+                        </page>
+                        <page name="Total charge" string="All over Charge">
+                            <group>
+                                <field name="total_charges"/>
+                                <field name="total_charges1"/>
+                                <field name="per" widget="percentpie"/>
+                            </group>
+                        </page>
+                        <page name="pg_child" string="childs">
+                            <field name="child_ids" readonly="1"/>
+                        </page>
+                        <page name="review" string="review">
+                            <field name="feedback" attrs="{'invisible': [('payment', '=', False)]}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <h2 style="color:tomato;" align="center">Thank you Visit Again</h2>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="view_rooms_tree" model="ir.ui.view">
+        <field name="name">view.rooms.tree</field>
+        <field name="model">hotel.rooms</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state=='stay-in'"
+                  decoration-warning="state=='check-out'">
+                <field name="name"/>
+                <field name="room_type"/>
+                <field name="room_code"/>
+                <field name="state"/>
+
+                <!--            <tree editable="top">-->
+                <!--            <tree create="0">-->
+                <!--            <tree delete="0">-->
+                <!--            <tree default_order = "birth_date">-->
+                <!--                <field name="name" optional="show"/>-->
+                <!--                <field name="age" optional="show" />-->
+                <!--&lt;!&ndash;                #sum="Totalage"&ndash;&gt;-->
+                <!--<field name="rent" groups="hotel.group_hotel_admin"/>-->
+                <!--                <field name="birth_date" optional="show"/>-->
+                <!--                <field name="room_type" optional="show"/>-->
+                <!--                <field name="payment" optional="hide"/>-->
+                <!--                <field name="mo_no" optional="hide"/>-->
+                <!--                <field name="per" widget="progressbar" optional="hide"/>-->
+                <!--                <field name="sequence" widget="handle" optional="hide"/>-->
+                <!--                <field name="total_charges" optional="show"/>-->
+                <!--&lt;!&ndash;                avg="Charges"&ndash;&gt;-->
+                <!--                <field name="total_charges1" optional="show"/>-->
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_new_rooms_tree" model="ir.ui.view">
+        <field name="name">view.new.rooms.tree</field>
+        <field name="model">hotel.rooms</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <!--                <field name="room_type"/>-->
+                <field name="state"/>
+
+            </tree>
+        </field>
+    </record>
+    <record id="view_rooms_search" model="ir.ui.view">
+        <field name="name">view.rooms.search</field>
+        <field name="model">hotel.rooms</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="age"/>
+                <field name="id_proof"/>
+                <filter name="fil_room_type" string="room" domain="[('room_type','=','delux')]"/>
+                <filter name="fil_age" string="age" domain="[('age','=','25')]"/>
+                <filter name="grp_by_gender" string="Gender" domain="[]" context="{'group_by':'gender'}"/>
+                <filter name="grp_by_id_proof" string="IdProof" domain="[]" context="{'group_by':'id_proof'}"/>
+                <filter name="grp_by_checkin_date" string="checkin_date" domain="[]"
+                        context="{'group_by':'checkin_date'}"/>
+                <filter name="fil_birthdate" string="Birthdate" date="birth_date"/>
+
+                <searchpanel>
+                    <field name="gender"/>
+                    <field name="room_type"/>
+                </searchpanel>
+
+            </search>
+        </field>
+    </record>
+    <record id="view_rooms_calendar" model="ir.ui.view">
+        <field name="name">view.rooms.calendar</field>
+        <field name="model">hotel.rooms</field>
+        <field name="arch" type="xml">
+            <calendar date_start="checkin_date" date_stop="checkout_date" color="name" mode="day">
+                <field name="name"/>
+            </calendar>
+        </field>
+    </record>
+
+
+    <record id="view_new_rooms_calendar" model="ir.ui.view">
+        <field name="name">view.new.rooms.calendar</field>
+        <field name="model">hotel.rooms</field>
+        <field name="arch" type="xml">
+            <calendar date_start="checkin_date" date_stop="checkout_date" color="name" mode="day">
+                <field name="name"/>
+                <field name="checkin_date"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="view_rooms_graph" model="ir.ui.view">
+        <field name="name">view.rooms.graph</field>
+        <field name="model">hotel.rooms</field>
+        <field name="arch" type="xml">
+            <graph type="bar" stacked="0">
+                <field name="gender" type="row"/>
+                <field name="name" type="col"/>
+                <field name="total_hours" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_new_rooms_graph" model="ir.ui.view">
+        <field name="name">view.new.rooms.graph</field>
+        <field name="model">hotel.rooms</field>
+        <field name="arch" type="xml">
+            <graph type="bar" stacked="0">
+                <field name="gender" type="col"/>
+                <field name="name" type="row"/>
+                <field name="age" type="measure"/>
+            </graph>
+        </field>
+    </record>
+    <record id="view_rooms_graph" model="ir.ui.view">
+        <field name="name">view.rooms.graph</field>
+        <field name="model">hotel.rooms</field>
+        <field name="arch" type="xml">
+            <graph type="line">
+                <field name="gender" type="row"/>
+                <field name="name" type="column"/>
+                <field name="total_hours" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_rooms_graph" model="ir.ui.view">
+        <field name="name">view.rooms.graph</field>
+        <field name="model">hotel.rooms</field>
+        <field name="arch" type="xml">
+            <graph type="pie">
+                <field name="gender" type="row"/>
+                <field name="name" type="column"/>
+                <field name="total_hours" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_rooms_pivot" model="ir.ui.view">
+        <field name="name">view.rooms.pivot</field>
+        <field name="model">hotel.rooms</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="name" type="row"/>
+                <field name="checkin_date" type="row" interval="day"/>
+                <field name="gender" type="col"/>
+                <field name="age" type="measure"/>
+                <field name="total_charges" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_record_kanban" model="ir.ui.view">
+        <field name="name">view.rooms.kanban</field>
+        <field name="model">hotel.rooms</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="id"/>
+                <field name="color"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <!--                        <div class="oe_kanban_card oe_kanban_global_click">-->
+                        <!--                            t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)}-->
+                        <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)}  oe_kanban_card oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <field name="img" class="o_kanban_view_fill_left d-block" widget="image"/>
+
+
+                                <!--
+
+                                      <img-->
+                                <!--                                    class="oe_avatar"-->
+                                <!--                                    t-att-src="kanban_image('hotel.rooms','img','record.id.raw_value')"-->
+                                <!--                                    role="img"-->
+                                <!--                                    t-att-alt="record.id.value"/>-->
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <b>
+                                        <field name='name'/>
+                                    </b>
+                                    <br/>
+                                    <field name="age"/>
+                                    <br/>
+                                    <field name="serve_ids"
+                                           widget="many2many_tags"
+                                           options="{'color_field':'color'}"/>
+                                </div>
+                            </div>
+                            <div class="o_dropdown_kanban dropdown">
+                                <a role="button"
+                                   class="dropdown-toggle o-no-caret btn"
+                                   data-toggle="dropdown"
+                                   data-display="static"
+                                   href="#"
+                                   aria-label="Dropdown Menu"
+                                   title="Dropdown Menu">
+                                    <span class="fa fa-ellipsis-v"/>
+                                </a>
+                                <div class="dropdown-menu" role="menu">
+                                    <div role="menuitem">
+                                        <a type="open">Open</a>
+                                    </div>
+                                    <div role="menuitem">
+                                        <a type="edit">Edit</a>
+                                    </div>
+                                    <div role="separator" class="dropdown-divider"/>
+                                    <div role="menuitem">
+                                        <a type="delete">Delete</a>
+                                    </div>
+                                    <div role="separator" class="dropdown-divider"/>
+                                    <div role="menuitem">
+                                        <a type="action" name="%(action_service)d">Services</a>
+                                    </div>
+                                    <div role="menuitem">
+                                        <a type="action" name="%(action_update_mo_wiz)d">Update Mo_no</a>
+                                    </div>
+                                    <div role="menuitem">
+                                        <a type="object" name="update">updated_Services</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record id="rooms_action" model="ir.actions.act_window">
+        <field name="name">rooms</field>
+        <field name="res_model">hotel.rooms</field>
+        <field name="view_mode">kanban,tree,form,calendar,graph,pivot</field>
+        <field name="context">
+            {'search_default_grp_by_gender':1,'form_view_ref':'hotel.view_rooms_form','tree_view_ref':'hotel.view_rooms_tree','calendar_view_ref':'hotel.view_rooms_calendar','graph_view_ref':'hotel.view_rooms_graph'}
+        </field>
+
+    </record>
+
+    <record id="action_gender" model="ir.actions.act_window">
+        <field name="name">Rooms by Female</field>
+        <field name="res_model">hotel.rooms</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('gender','=','female')]</field>
+    </record>
+
+
+    <record id="action_new_rooms" model="ir.actions.act_window">
+        <field name="name">New rooms</field>
+        <field name="res_model">hotel.rooms</field>
+        <field name="view_mode">form,calendar,graph</field>
+        <field name="context">
+            {'form_view_ref':'hotel.view_new_rooms_form','calendar_view_ref':'hotel.view_new_rooms_calendar','graph_view_ref':'hotel.view_new_rooms_graph'}
+        </field>
+
+    </record>
+
+    <record id="ir_action_window_view_tree_new_rooms" model="ir.actions.act_window.view">
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_new_rooms_tree"/>
+        <field name="act_window_id" ref="action_new_rooms"/>
+    </record>
+
+    <record id="action_gender_male" model="ir.actions.act_window">
+        <field name="name">Rooms by male</field>
+        <field name="res_model">hotel.rooms</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('gender','=','male')]</field>
+    </record>
+
+
+    <!--    <menuitem id="menu_hotel_app" name="Hotel Management"/>-->
+    <!--    <menuitem id="menu_rooms" name="Hotel" parent="menu_hotel_app"/>-->
+
+    <menuitem id="menu_customer" action="rooms_action" name="rooms" parent="menu_rooms"/>
+<!--    <menuitem id="menu_new_rooms" action="action_new_rooms" name="New Rooms" parent="menu_rooms"/>-->
+    <menuitem id="menu_students_female" action="action_gender" parent="menu_rooms"/>
+    <menuitem id="menu_students_male" action="action_gender_male" parent="menu_rooms"/>
+
+
+</odoo>

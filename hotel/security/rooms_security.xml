@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id ="group_hotel_admin" model="res.groups">
+        <field name="name">Hotel Admin</field>
+    </record>
+    <record id="group_hotel_staff" model="res.groups">
+        <field name="name">Hotel Staff</field>
+    </record>
+    <record id="group_hotel_customer" model="res.groups">
+        <field name="name">Hotel Customer</field>
+    </record>
+</odoo>

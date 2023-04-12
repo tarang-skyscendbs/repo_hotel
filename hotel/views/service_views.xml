@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_service_form" model="ir.ui.view">
+        <field name="name">view.service.form</field>
+        <field name="model">hotel.service</field>
+        <field name="arch" type="xml">
+
+            <form>
+                <sheet>
+                    <group>
+                        <field name="room_id"/>
+                        <field name="service"/>
+                        <field name="rent" />
+                        <field name="service_charge"/>
+                        <field name="food_charge"/>
+                        <field name="customer_code"/>
+                        <field name="color" widget="color_picker"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_service_tree" model="ir.ui.view">
+        <field name="name">view.service.tree</field>
+        <field name="model">hotel.service</field>
+        <field name="arch" type="xml">
+
+            <tree>
+                <field name="room_id"/>
+                <field name="service"/>
+                <field name="color" widget="color_picker"/>
+                <field name="customer_code"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_service_search" model="ir.ui.view">
+        <field name="name">view.service.search</field>
+        <field name="model">hotel.service</field>
+        <field name="arch" type="xml">
+
+            <search>
+                <field name="service"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_service" model="ir.actions.act_window">
+        <field name="name">Service</field>
+        <field name="res_model">hotel.service</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_service" name="service" action="action_service" parent="menu_hotel_app"/>
+</odoo>

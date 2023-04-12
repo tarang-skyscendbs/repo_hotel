@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id ="view_update_field_wiz_form" model="ir.ui.view">
+        <field name="name">view.update.field.wiz.form</field>
+        <field name="model">wiz.update.field</field>
+        <field name="arch" type="xml">
+                <form>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(rooms_action)d"
+                                type="action"
+                                class="oe_stat_button"
+                                icon="fa-users"
+                                string="Services">
+                        </button>
+                    </div>
+                    <group>
+                        <field name="room_id" required="1"/>
+                        <field name="color" widget="color_picker"/>
+                        <field name="customer_code"/>
+                        <field name="service"/>
+<!--                        <field name="restaurant_id"/>-->
+                    </group>
+                    <footer>
+                        <button name="update_field" string="Update" type="object" class="btn-primary"/>
+                        <button special="cancel" string="Cancel" class="btn-danger"/>
+                    </footer>
+                </form>
+        </field>
+    </record>
+    <record id="action_update_field_wiz" model="ir.actions.act_window">
+        <field name="name">Update Field</field>
+        <field name="res_model">wiz.update.field</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'form_view_ref':'hotel.view_update_field_wiz_form'}</field>
+    </record>
+
+    <menuitem id="menu_update_field" action="action_update_field_wiz" parent="menu_hotel_app"/>
+</odoo>

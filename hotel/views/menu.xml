@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="menu_hotel_app" name="Hotel Management"/>
+    <menuitem id="menu_rooms" name="Hotel" parent="menu_hotel_app"/>
+<!--    <menuitem id="menu_new_rooms" action="action_new_rooms" name="New Rooms" parent="menu_hotel_app"/>-->
+<!--    <menuitem id="menu_customer" name="rooms" action="action_rooms" parent="menu_rooms"/>-->
+<!--    <menuitem id="menu_students_female" action="action_gender" parent="menu_rooms"/>-->
+<!--    <menuitem id="menu_students_male" action="action_gender_male" parent="menu_rooms"/>-->
+<!--    <menuitem id="menu_service" name="service" action="action_service" parent="menu_hotel_app"/>-->
+
+    <menuitem id="menu_restaurant" name="restaurant" parent="menu_hotel_app"/>
+
+    <menuitem id="menu_menu" name="menu" parent="menu_restaurant"/>
+
+<!--    <record id="action_service" model="ir.actions.act_window">-->
+<!--        <field name="name">Service</field>-->
+<!--        <field name="res_model">hotel.service</field>-->
+<!--        <field name="view_mode">tree,form</field>-->
+<!--    </record>-->
+</odoo>

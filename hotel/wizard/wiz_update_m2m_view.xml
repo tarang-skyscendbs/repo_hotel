@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id ="view_update_m2m_wiz_form" model="ir.ui.view">
+        <field name="name">view.update.m2m.wiz.form</field>
+        <field name="model">wiz.update.m2m</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+<!--                    <field name="room_id"/>-->
+                    <field name="serve_ids"/>
+                </group>
+            <footer>
+<!--                <button name="update_m2m" string="Update" type="object" class="btn-primary" />/>-->
+                <button name="open" string="open" type="object" class="btn-danger"/>
+            </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_update_m2m_wiz" model="ir.actions.act_window">
+        <field name="name">Update m2m</field>
+        <field name="res_model">wiz.update.m2m</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'form_view_ref':'hotel.view_update_m2m_wiz_form'}</field>
+    </record>
+    <menuitem id="menu_update_m2m" action="action_update_m2m_wiz" parent="menu_hotel_app"/>
+
+
+
+</odoo>

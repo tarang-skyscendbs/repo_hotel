@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="hotel_sequence" model="ir.sequence">
+            <field name="name">rooms sequence</field>
+            <field name="code">hotel.rooms</field>
+            <field name="prefix">R</field>
+            <field name="suffix">.</field>
+            <field name="padding">4</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+        </record>
+    </data>
+</odoo>

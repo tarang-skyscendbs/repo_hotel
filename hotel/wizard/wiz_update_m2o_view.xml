@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id ="view_update_m2o_wiz_form" model="ir.ui.view">
+        <field name="name">view.update.m2o.wiz.form</field>
+        <field name="model">wiz.update.m2o</field>
+        <field name="arch" type="xml">
+                 <form>
+                    <group>
+<!--                        <field name="room_id"/>-->
+                        <field name="restaurant_id"/>
+                    </group>
+                     <footer>
+                         <button name="update_field_m2o" string="food" type="object" class="btn-primary"/>
+                     </footer>
+
+                 </form>
+        </field>
+    </record>
+        <record id="action_update_m2o_wiz" model="ir.actions.act_window">
+                <field name="name">Update M2o Field</field>
+                <field name="res_model">wiz.update.m2o</field>
+                <field name="view_mode">form</field>
+                <field name="target">new</field>
+                <field name="context">{'form_view_ref':'hotel.view_update_m2o_wiz_form'}</field>
+        </record>
+
+        <menuitem id="menu_update_m2o_field" action="action_update_m2o_wiz" parent="menu_hotel_app"/>
+</odoo>
