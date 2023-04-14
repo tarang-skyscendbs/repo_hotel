@@ -533,12 +533,18 @@
         <field name="domain">[('gender','=','male')]</field>
     </record>
 
+<!--    <record id="action_config" model="ir.actions.act_window">-->
+<!--        <field name="name">Configuration</field>-->
+<!--        <field name="res_model">hotel.rooms</field>-->
+<!--        <field name="view_mode">tree,form</field>-->
+<!--    </record>-->
 
     <!--    <menuitem id="menu_hotel_app" name="Hotel Management"/>-->
     <!--    <menuitem id="menu_rooms" name="Hotel" parent="menu_hotel_app"/>-->
 
     <menuitem id="menu_customer" action="rooms_action" name="rooms" parent="menu_rooms"/>
-<!--    <menuitem id="menu_new_rooms" action="action_new_rooms" name="New Rooms" parent="menu_rooms"/>-->
+<!--    <menuitem id="menu_config" action="action_config" name="Configuration" parent="menu_hotel_app" sequence="10"/>-->
+    <!--    <menuitem id="menu_new_rooms" action="action_new_rooms" name="New Rooms" parent="menu_rooms"/>-->
     <menuitem id="menu_students_female" action="action_gender" parent="menu_rooms"/>
     <menuitem id="menu_students_male" action="action_gender_male" parent="menu_rooms"/>
 

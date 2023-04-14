@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="room_profile_template">
+        <t t-foreach="docs" t-as="room">
+            <t t-call="web.html_container">
+                <div class="page">
+                    <t t-call="web.external_layout">
+                            <center><h1>Room Profile</h1></center>
+                            <br/>
+                            <br/>
+                            <p><b>Name:</b><span t-field="room.name"/></p>
+                            <img t-if = "room.img" t-att-src="image_data_uri(room.img)" style="max-height:85pt;max-width:90%" alt="Customer Image"/>
+                            <br/>
+                            <br/>
+                            <table border="1" width="100%">
+                                <tr style="text-align:center;">
+                                    <th>age</th>
+                                    <th>checkin_date</th>
+                                    <th>checkout_date</th>
+                                    <th>gender</th>
+<!--                                    <th>serve_ids</th>-->
+                                </tr>
+                                <tr>
+                                    <td style="text-align:center;"><span t-field="room.age"/></td>
+                                    <td style="text-align:center;"><span t-field="room.checkin_date"/></td>
+                                    <td style="text-align:center;"><span t-field="room.checkin_date"/></td>
+                                    <td style="text-align:center;"><span t-field="room.gender"/></td>
+<!--                                    <td style="text-align:center;"><span t-field="room.serve_ids"/></td>-->
+
+                                </tr>
+                            </table>
+                            <br/>
+                            <br/>
+                            <table border="1" width="100%">
+                                <tr style="text-align:center;">
+                                    <th>service</th>
+                                </tr>
+                                <t t-foreach="room.service_id" t-as="serve">
+                                    <tr style="text-align:center;">
+                                        <td style="text-align:center;"><span t-field="serve.service"/></td>
+                                    </tr>
+                                </t>
+                            </table>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </template>
+</odoo>

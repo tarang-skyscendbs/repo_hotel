@@ -23,4 +23,11 @@ access_hotel_customer_wiz_update_m2o_access,hotel.customer.wiz_update_m2o.access
 access_hotel_admin_wiz_update_m2o_access,hotel.admin.wiz_update_m2o.access,model_wiz_update_m2o,hotel.group_hotel_admin,1,1,1,1
 access_hotel_staff_wiz_update_m2o_access,hotel.staff.wiz_update_m2o.access,model_wiz_update_m2o,hotel.group_hotel_staff,1,1,1,0
 access_hotel_customer_wiz_update_m2o_access,hotel.customer.wiz_update_m2o.access,model_wiz_update_m2o,hotel.group_hotel_customer,1,0,0,0
+access_hotel_admin_rooms_analysis_access,hotel.admin.rooms_analysis.access,model_rooms_analysis,hotel.group_hotel_admin,1,1,1,1
+access_hotel_staff_rooms_analysis_access,hotel.staff.rooms_analysis.access,model_rooms_analysis,hotel.group_hotel_staff,1,1,1,0
+access_hotel_customer_rooms_analysis_access,hotel.customer.rooms_analysis.access,model_rooms_analysis,hotel.group_hotel_customer,1,0,0,0
+
+
+
+
 

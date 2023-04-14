@@ -32,7 +32,7 @@
     </record>
     <!-- Form view of Update Mo_no Wizard without coustomer-->
     <record id="view_update_mo_no_wiz_form_no_room" model="ir.ui.view">
-        <field name="name">view.update.fees.wiz.form</field>
+        <field name="name">view.update.mo.no.wiz.form.no.room</field>
         <field name="model">wiz.update.mo</field>
         <field name="arch" type="xml">
             <form>

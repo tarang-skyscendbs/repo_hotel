@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id = "view_rooms_analysis_tree" model = "ir.ui.view">
+        <field name="name">view.rooms.analysis.tree</field>
+        <field name="model">rooms.analysis</field>
+        <field name="arch" type="xml">
+            <tree>
+<!--                <field name="name"/>-->
+                <field name="room_id"/>
+                <field name="customer_code"/>
+                <field name="room_type"/>
+                <field name="age"/>
+                <field name="email"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_rooms_analysis_graph" model="ir.ui.view">
+        <field name="name">view.rooms.analysis.graph</field>
+        <field name="model">rooms.analysis</field>
+        <field name="arch" type="xml">
+            <graph type="bar" stacked="0">
+                <field name="name" type="column"/>
+<!--                <field name="name" type="row"/>-->
+                <field name="age" type="measure"/>
+            </graph>
+        </field>
+    </record>
+    <record id="view_rooms_analysis_pivot" model="ir.ui.view">
+        <field name="name">view.rooms.analysis.pivot</field>
+        <field name="model">rooms.analysis</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="name" type="row"/>
+<!--                <field name="checkin_date" type="row" interval="day"/>-->
+                <field name="room_type" type="row"/>
+                <field name="age" type="measure"/>
+<!--                <field name="total_charges" type="measure"/>-->
+            </pivot>
+        </field>
+    </record>
+    <record id = "action_rooms_analysis" model="ir.actions.act_window">
+        <field name="name">Rooms Analysis</field>
+        <field name="res_model">rooms.analysis</field>
+        <field name="view_mode">tree,graph,pivot</field>
+    </record>
+    <menuitem id = "reporting" name="Report" parent="menu_hotel_app" action="action_rooms_analysis"></menuitem>
+</odoo>

@@ -105,7 +105,8 @@ class Room(models.Model):
     def print_hello(self):
         print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Hello",self)
         print("Environment------->", self.env)
-        print("Obj------->", self.env['hotel.rooms'].search([('user_id', '=', self.user_id.id)]))
+        x=self.env['hotel.rooms'].search([])
+        print("Obj------->",x)
         print("ARGS", self.env.args)
         print("Language", self.env.lang)
         print("User", self.env.user)
